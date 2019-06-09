@@ -4,7 +4,7 @@
     <ul id="example-1">
       <Item v-for="(item, key) in o_cfg" :key="key" :item="item"/>
     </ul>
-    <button v-on:click="getConfig">Get Config</button>
+    <button v-on:click="getConfig" :disabled="disabled">Get Config</button>
     <div>
       <transition name="fade">
       <pre v-if="output">{{ output }}</pre>
@@ -28,7 +28,8 @@ export default {
       o_cfg: {},
       user_cfg: {},
       output: '',
-      show: false
+      show: false,
+      disabled: false
     }
   },
   beforeMount: function () {
@@ -86,6 +87,10 @@ export default {
     background: #525252;
     border: 1px solid black;
     color: aliceblue;
+    transition: opacity .5s;
+  }
+  button:disabled {
+    opacity: 0.2;
   }
   pre {
     background: whitesmoke;

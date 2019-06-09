@@ -11,8 +11,9 @@ export default {
   data () {
     return {
       patterns: {
-        int: /^[ 0-9]+$/,
-        float: /^\d+(\.\d+)?$/
+        int: /^[0-9]+$/,
+        float: /^\d+(\.\d+)?$/,
+        string: /^[_\-'\s0-9a-zA-Zа-яА-Я]+$/
       },
       value: this.item.default,
       error: ''
@@ -28,9 +29,12 @@ export default {
     validateItem: function () {
       let pattern = this.patterns[this.item.type]
       this.error = ''
+      this.$parent.$parent.disabled = false
+
       if (pattern) {
         if (!pattern.test(this.value)) {
           this.error = 'Неверный формат'
+          this.$parent.$parent.disabled = true
         }
       }
     }
