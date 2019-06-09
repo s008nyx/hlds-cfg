@@ -1,6 +1,7 @@
 <template>
   <div class="form">
-    <input type="text" v-model="value" v-on:input="$emit('set-cfg-param', value)" :pattern="patterns[item.type] ? patterns[item.type] : ''"/>
+    <input type="text" v-model="value" v-on:input="$emit('set-cfg-param', value)"/>
+    <small v-if="error" class="error">{{ error }}</small>
   </div>
 </template>
 
@@ -10,17 +11,35 @@ export default {
   data () {
     return {
       patterns: {
-        int: '^[ 0-9]+$',
-        float: '\\d+(\\.\\d{2})?'
+        int: /^[ 0-9]+$/,
+        float: /^\d+(\.\d+)?$/
       },
-      value: this.item.default
+      value: this.item.default,
+      error: ''
     }
+  },
+  watch: {
+    value: 'validateItem'
   },
   props: {
     item: Object
+  },
+  methods: {
+    validateItem: function () {
+      let pattern = this.patterns[this.item.type]
+      this.error = ''
+      if (pattern) {
+        if (!pattern.test(this.value)) {
+          this.error = 'Неверный формат'
+        }
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
+  .error {
+    color: red;
+  }
 </style>
