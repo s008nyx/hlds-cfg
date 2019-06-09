@@ -5,7 +5,11 @@
       <Item v-for="(item, key) in o_cfg" :key="key" :item="item"/>
     </ul>
     <button v-on:click="getConfig">Get Config</button>
-    <div><pre>{{ output }}</pre></div>
+    <div>
+      <transition name="fade">
+      <pre v-if="output">{{ output }}</pre>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -23,7 +27,8 @@ export default {
       title: 'Variables Configurator',
       o_cfg: {},
       user_cfg: {},
-      output: ''
+      output: '',
+      show: false
     }
   },
   beforeMount: function () {
@@ -52,27 +57,47 @@ export default {
 </script>
 
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  padding: 10px;
-  margin: 0 10px;
-  width: 90%;
-  max-width: 1200px;
-  background: #ececec;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 10px;
+    width: 90%;
+    max-width: 1200px;
+    background: #ececec;
+  }
 
-li:nth-child(even) {
-  background: whitesmoke;
-}
-a {
-  color: #42b983;
-}
+  li:nth-child(even) {
+    background: whitesmoke;
+  }
+  a {
+    color: #42b983;
+  }
+  button {
+    width: 200px;
+    padding: 10px;
+    background: #525252;
+    border: 1px solid black;
+    color: aliceblue;
+  }
+  pre {
+    background: whitesmoke;
+    text-align: left;
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+  }
 </style>

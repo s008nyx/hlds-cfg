@@ -1,20 +1,21 @@
 {
-  "title": "HLDS Servers Configuration",
+  "title": "RegameDLL Configuration",
   "variables":
   [
     {
-      "command": "sv_alltalk",
+      "command": "mp_freeforall",
       "type": "int",
-      "values": [0, 1, 2],
-      "label": "Label",
-      "description": "text description",
-      "default": 1
+      "values": [0, 1],
+      "label": "Каждый сам за себя",
+      "description": "Вкл./Выкл. режима 'Каждый сам за себя' (FFA mode)",
+      "default": 0
     },
     {
-      "command": "sv_alltalk2",
+      "command": "mp_autoteambalance",
       "type": "int",
-      "label": "Label",
-      "description": "textkkkkk description",
+      "values": [0, 1, 2],
+      "label": "Балансировка команд",
+      "description": "",
       "default": 1
     }
   ]

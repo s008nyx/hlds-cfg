@@ -1,7 +1,6 @@
 <template>
   <div class="form">
     <input type="text" v-model="value" v-on:input="$emit('set-cfg-param', value)"/>
-    <p>Введённое сообщение: {{ value }}</p>
   </div>
 </template>
 

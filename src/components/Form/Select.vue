@@ -6,7 +6,6 @@
         {{ variant }}
       </option>
     </select>
-    <span>Выбрано: {{ selected }}</span>
   </div>
 </template>
 
