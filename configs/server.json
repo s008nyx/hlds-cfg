@@ -5,7 +5,16 @@
     {
       "command": "mp_freeforall",
       "type": "int",
-      "values": [0, 1],
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
       "label": "Каждый сам за себя",
       "description": "Вкл./Выкл. режима 'Каждый сам за себя' (FFA mode)",
       "default": 0
@@ -13,7 +22,20 @@
     {
       "command": "mp_autoteambalance",
       "type": "int",
-      "values": [0, 1, 2],
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "Балансировка будет происходить через раунд"
+        },
+        {
+          "value": 2,
+          "desc": "Балансировка команд каждый раунд"
+        }
+      ],
       "label": "Балансировка команд",
       "description": "",
       "default": 1
