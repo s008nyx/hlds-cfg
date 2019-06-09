@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 
 // Vue.config.productionTip = false;
-
 const cfg = () => {
   let app = document.querySelector('#app')
   if (app.dataset.config) {

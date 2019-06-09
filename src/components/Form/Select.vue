@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <select v-model="selected">
+    <select v-model="selected" v-on:change="$emit('set-cfg-param', selected)">
       <option disabled value="">Выберите один из вариантов</option>
       <option v-for="(variant, key) in item.values" :key="key" :value="variant">
         {{ variant }}

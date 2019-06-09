@@ -7,8 +7,8 @@
             <small>{{ item.description }}</small>
           </label>
         </div>
-        <Select :item="item" v-if="item.values" />
-        <Input :item="item" v-else />
+        <Select :item="item" v-if="item.values" v-on:set-cfg-param="setCfgParam"/>
+        <Input :item="item" v-else v-on:set-cfg-param="setCfgParam"/>
     </div>
   </li>
 </template>
@@ -19,9 +19,23 @@ import Select from './Select'
 
 export default {
   name: 'Item',
-  components: {Select, Input},
+  components: {
+    Select,
+    Input
+  },
   props: {
     item: Object
+  },
+  methods: {
+    setCfgParam: function (value) {
+      this.$parent.user_cfg[this.item.command] = {
+        command: this.item.command,
+        value: value
+      }
+    }
+  },
+  created: function () {
+    this.setCfgParam(this.item.default)
   }
 }
 </script>

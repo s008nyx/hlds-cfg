@@ -4,6 +4,8 @@
     <ul id="example-1">
       <Item v-for="(item, key) in o_cfg" :key="key" :item="item"/>
     </ul>
+    <button v-on:click="getConfig">Get Config</button>
+    <div><pre>{{ output }}</pre></div>
   </div>
 </template>
 
@@ -19,13 +21,14 @@ export default {
   data () {
     return {
       title: 'Variables Configurator',
-      o_cfg: {}
+      o_cfg: {},
+      user_cfg: {},
+      output: ''
     }
   },
-  props: ['cfg'],
   beforeMount: function () {
     axios
-      .get(this.cfg)
+      .get(this.$parent.$props.cfg)
       .then(response => {
         if (response.data.variables) {
           this.o_cfg = response.data.variables
@@ -34,6 +37,16 @@ export default {
           this.title = response.data.title
         }
       })
+  },
+  methods: {
+    getConfig: function () {
+      let params = this.user_cfg
+      this.output = ''
+
+      for (var key in params) {
+        this.output += (params[key].command + ' "' + params[key].value + '"\n')
+      }
+    }
   }
 }
 </script>

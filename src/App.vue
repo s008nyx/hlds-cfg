@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Config :cfg="cfg"/>
+    <Config/>
   </div>
 </template>
 

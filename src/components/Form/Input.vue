@@ -1,6 +1,7 @@
 <template>
   <div class="form">
-    <input type="text" :value="item.default"/>
+    <input type="text" v-model="value" v-on:input="$emit('set-cfg-param', value)"/>
+    <p>Введённое сообщение: {{ value }}</p>
   </div>
 </template>
 
@@ -12,7 +13,8 @@ export default {
       patterns: {
         int: '^[ 0-9]+$',
         float: '\\d+(\\.\\d{2})?'
-      }
+      },
+      value: this.item.default
     }
   },
   props: {
