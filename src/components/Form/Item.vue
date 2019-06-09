@@ -35,6 +35,7 @@ export default {
         command: this.item.command,
         value: value
       }
+      console.log(this.$parent.user_cfg)
     }
   },
   created: function () {
@@ -49,11 +50,11 @@ export default {
   }
   div.row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     flex-wrap: wrap;
   }
   .label {
-    flex-grow: 1;
+    width: 70%;
   }
   .form {
     width: 30%;
