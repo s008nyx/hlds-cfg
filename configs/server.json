@@ -39,6 +39,37 @@
       "label": "Балансировка команд",
       "description": "",
       "default": 1
+    },
+    {
+      "command": "mp_buytime",
+      "type": "float",
+      "label": "Время закупки в каждом раунде",
+      "description": "В минутах",
+      "default": 1.5
+    },
+    {
+      "command": "mp_maxmoney",
+      "type": "int",
+      "label": "Максимальное кол-во денег",
+      "description": "Допустимый денежный лимит 999999",
+      "default": 16000
+    },
+    {
+      "command": "mp_roundover",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "Выключить"
+        },
+        {
+          "value": 1,
+          "desc": "Включить"
+        }
+      ],
+      "label": "Принудительное завершение раунда, по истечению времени, на картах без сценария",
+      "description": "",
+      "default": 0
     }
   ]
 }

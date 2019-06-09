@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <input type="text" v-model="value" v-on:input="$emit('set-cfg-param', value)"/>
+    <input type="text" v-model="value" v-on:input="$emit('set-cfg-param', value)" :pattern="patterns[item.type] ? patterns[item.type] : ''"/>
   </div>
 </template>
 
