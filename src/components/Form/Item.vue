@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Input from "./Input";
-import Select from "./Select";
+import Input from './Input'
+import Select from './Select'
 
 export default {
   name: 'Item',

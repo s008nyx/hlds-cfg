@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'Input',
-  data() {
+  data () {
     return {
       patterns: {
         int: '^[ 0-9]+$',

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Config/>
+    <Config :cfg="cfg"/>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ export default {
   name: 'App',
   components: {
     Config
-  }
+  },
+  props: ['cfg']
 }
 </script>
 

@@ -1,10 +1,12 @@
 <template>
   <div class="form">
-    <select v-model:default="item.default">
-      <option v-for="variant in item.values" v-bind:value="variant">
+    <select v-model="selected">
+      <option disabled value="">Выберите один из вариантов</option>
+      <option v-for="(variant, key) in item.values" :key="key" :value="variant">
         {{ variant }}
       </option>
     </select>
+    <span>Выбрано: {{ selected }}</span>
   </div>
 </template>
 
@@ -13,6 +15,11 @@ export default {
   name: 'Select',
   props: {
     item: Object
+  },
+  data () {
+    return {
+      selected: this.item.default
+    }
   }
 }
 </script>

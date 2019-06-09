@@ -3,19 +3,22 @@
 import Vue from 'vue'
 import App from './App'
 
-Vue.config.productionTip = false;
+// Vue.config.productionTip = false;
 
 const cfg = () => {
-  let app = document.querySelector("#app");
+  let app = document.querySelector('#app')
   if (app.dataset.config) {
-    return app.dataset.config;
+    return app.dataset.config
   }
-  return 'nope';
-};
+  return 'nope'
+}
 
 /* eslint-disable no-new */
-let vue = new Vue({
+new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>'
-});
+  template: '<App :cfg="cfg"/>',
+  data: {
+    cfg: cfg()
+  }
+})

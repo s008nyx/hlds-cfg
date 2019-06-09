@@ -1,14 +1,15 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ title }}</h1>
     <ul id="example-1">
-      <Item v-for="item in cfg.variables" :item="item"/>
+      <Item v-for="(item, key) in o_cfg" :key="key" :item="item"/>
     </ul>
   </div>
 </template>
 
 <script>
 import Item from './Form/Item'
+import axios from 'axios'
 
 export default {
   name: 'Config',
@@ -17,28 +18,22 @@ export default {
   },
   data () {
     return {
-      msg: 'Server Variables Configurator',
-      cfg: {
-        "variables":
-          [
-            {
-              "command": "sv_alltalk",
-              "type": "int",
-              "values": [0, 1, 2],
-              "label": "Label",
-              "description": "text description",
-              "default": 1
-            },
-            {
-              "command": "sv_alltyalk",
-              "type": "int",
-              "label": "Label",
-              "description": "text description",
-              "default": 1
-            }
-          ]
-      }
+      title: 'Variables Configurator',
+      o_cfg: {}
     }
+  },
+  props: ['cfg'],
+  beforeMount: function () {
+    axios
+      .get(this.cfg)
+      .then(response => {
+        if (response.data.variables) {
+          this.o_cfg = response.data.variables
+        }
+        if (response.data.title) {
+          this.title = response.data.title
+        }
+      })
   }
 }
 </script>
