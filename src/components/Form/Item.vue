@@ -9,6 +9,7 @@
         </div>
         <Select :item="item" v-if="item.values" v-on:set-cfg-param="setCfgParam"/>
         <Input :item="item" v-else v-on:set-cfg-param="setCfgParam"/>
+        <Alt :item="item" v-if="item.alt_values" v-on:set-cfg-param="setCfgParam"/>
     </div>
   </li>
 </template>
@@ -16,12 +17,14 @@
 <script>
 import Input from './Input'
 import Select from './Select'
+import Alt from './Alt'
 
 export default {
   name: 'Item',
   components: {
     Select,
-    Input
+    Input,
+    Alt
   },
   props: {
     item: Object
