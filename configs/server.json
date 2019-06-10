@@ -17,9 +17,7 @@
       ],
       "label": "Каждый сам за себя",
       "description": "Вкл./Выкл. режима 'Каждый сам за себя' (FFA mode)",
-      "default": 0,
-      "min": 0,
-      "max": 1
+      "default": 0
     },
     {
       "command": "mp_round_infinite",
@@ -104,7 +102,9 @@
       "type": "int",
       "label": "Максимальное кол-во денег",
       "description": "Допустимый денежный лимит 999999",
-      "default": 16000
+      "default": 16000,
+      "min": 0,
+      "max": 999999
     },
     {
       "command": "mp_roundover",
