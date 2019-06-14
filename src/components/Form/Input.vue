@@ -34,8 +34,8 @@ export default {
   data () {
     return {
       patterns: {
-        int: /^[0-9]+$/,
-        float: /^\d+(\.\d+)?$/,
+        int: /^[-0-9]+$/,
+        float: /^[-]?\d+(\.\d+)?$/,
         string: /^[_\-'\s0-9a-zA-Zа-яА-Я]+$/
       },
       value: this.item.default,

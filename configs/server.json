@@ -94,8 +94,9 @@
       "command": "mp_buytime",
       "type": "float",
       "label": "Время закупки в каждом раунде",
-      "description": "В минутах",
-      "default": 1.5
+      "description": "В минутах. Значение 0 отключит закупку, значение -1 уберет ограничение по времени",
+      "default": 1.5,
+      "min": -1.0
     },
     {
       "command": "mp_maxmoney",
@@ -205,6 +206,392 @@
       "default": 0.00,
       "min": 0.00,
       "step": 0.01
+    },
+    {
+      "command": "mp_allow_point_servercommand",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "запретить"
+        },
+        {
+          "value": 1,
+          "desc": "разрешить"
+        }
+      ],
+      "label": "Разрешить использование объектов point_servercommand на карте",
+      "description": "ПРИМЕЧАНИЕ: Потенциально опасно для ненадежных карт",
+      "default": 0
+    },
+    {
+      "command": "mp_auto_join_team",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
+      "label": "Автоматическое присоединение к команде",
+      "description": "Если включено, тогда используйте настройки humans_join_team any/CT/T",
+      "default": 0
+    },
+    {
+      "command": "mp_auto_reload_weapons",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
+      "label": "Автоматическая перезарядка оружия после спавна",
+      "description": "",
+      "default": 0
+    },
+    {
+      "command": "mp_forcerespawn",
+      "type": "float",
+      "label": "Автоматический респавн игрока после смерти",
+      "description": "Значение 0 отключает настройку. Для включения используйте значение >0.00001",
+      "default": 0.0,
+      "min": 0.0
+    },
+    {
+      "command": "mp_fraglimit",
+      "type": "int",
+      "label": "Когда игрок наберет заданое число фрагов-карта сменится",
+      "description": "Значение 0 отключает настройку",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "command": "mp_fragsleft",
+      "label": "Покажет кол-во фрагов в консоли",
+      "description": "Работает только если включена настройка mp_fraglimit"
+    },
+    {
+      "command": "mp_hegrenade_penetration",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
+      "label": "Блокировка урона осколочной гранаты через стены",
+      "description": "",
+      "default": 0
+    },
+    {
+      "command": "mp_hostage_hurtable",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "От любой команды"
+        },
+        {
+          "value": 2,
+          "desc": "От команды CT"
+        },
+        {
+          "value": 3,
+          "desc": "От команды T"
+        }
+      ],
+      "label": "Заложники могут получить урон.",
+      "description": "",
+      "default": 1
+    },
+    {
+      "command": "mp_item_staytime",
+      "type": "int",
+      "label": "Время (секунды) для удаления предмета, который выбросил игрок",
+      "description": "",
+      "default": 300,
+      "min": 0
+    },
+    {
+      "command": "mp_kill_filled_spawn",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
+      "label": "Убивает игрока в точке возрождения, перед появлением нового игрока в этой точке (предотвращает застревание игроков друг в друге)",
+      "description": "Отключайте это, только если у вас есть semiclip или другие плагины, которые предотвращают застревание",
+      "default": 1
+    },
+    {
+      "command": "mp_legacy_bombtarget_touch",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "Новое поведение"
+        },
+        {
+          "value": 1,
+          "desc": "Устаревшее"
+        }
+      ],
+      "label": "Обработка касания для func_bomb_target",
+      "description": "Новый подход более строгий",
+      "default": 1
+    },
+    {
+      "command": "mp_max_teamkills",
+      "type": "int",
+      "label": "Максимальное число убийств товарищей по команде, после чего последует kick",
+      "description": "Используйте, когда включен mp_autokick. Значение 0 отключает настройку",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "command": "mp_nadedrops",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "выбросить первую гранату (Если у игрока было 1 HE, 2 Flash, 1 Smoke, то на землю упадет только 1 HE)"
+        },
+        {
+          "value": 2,
+          "desc": "выбросить все гранаты"
+        }
+      ],
+      "label": "Выбрасывать гранаты на землю, после смерти игрока",
+      "description": "",
+      "default": 0
+    },
+    {
+      "command": "mp_old_bomb_defused_sound",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
+      "label": "Проигрывать звук 'Bomb has been defused' вместо 'Counter-Terrorists win', когда бомбу разминировали",
+      "description": "Значение 0 - стандартное поведение в hlds от valve",
+      "default": 1
+    },
+    {
+      "command": "mp_refill_bpammo_weapons",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "пополнять запас патронов после спавна"
+        },
+        {
+          "value": 2,
+          "desc": "пополнять запас патронов после спавна и полная обойма, при покупке оружия"
+        },
+        {
+          "value": 3,
+          "desc": "пополнять запас патронов после каждой перезарядки ( Полезно для модов DeathMatch, GunGame, ZombieMod.)"
+        }
+      ],
+      "label": "Пополнение патронов",
+      "description": "",
+      "default": 0
+    },
+    {
+      "command": "mp_respawn_immunitytime",
+      "type": "float",
+      "label": "Указывает время защиты игроков после респауна (в секундах)",
+      "description": "Значение 0 отключает настройку. Используйте значение >0.00001",
+      "default": 0.0,
+      "min": 0.0
+    },
+    {
+      "command": "mp_round_restart_delay",
+      "type": "float",
+      "label": "Выдержка времени до начала нового раунда, после окончания текущего.",
+      "description": "",
+      "default": 5
+    },
+    {
+      "command": "mp_roundrespawn_time",
+      "type": "float",
+      "label": "Время, после начала раунда, когда игрок не сможет заспавниться и будет ждать нового раунда",
+      "description": "",
+      "default": 20
+    },
+    {
+      "command": "mp_scoreboard_showhealth",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "не отправлять обновления для поля 'HP'"
+        },
+        {
+          "value": 1,
+          "desc": "показать всем только 'HP' террористов"
+        },
+        {
+          "value": 2,
+          "desc": "показать всем только 'HP' контер-террористов"
+        },
+        {
+          "value": 3,
+          "desc": "показать 'HP' товарищам по команде"
+        },
+        {
+          "value": 4,
+          "desc": "показать 'HP' всех"
+        },
+        {
+          "value": 5,
+          "desc": "показать 'HP' товарищам по команде и зрителям"
+        }
+      ],
+      "label": "Показать  'HP' в TAB",
+      "description": "",
+      "default": 3
+    },
+    {
+      "command": "mp_scoreboard_showmoney",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "не отправлять обновления для поля 'Money'"
+        },
+        {
+          "value": 1,
+          "desc": "показать всем только 'Money' террористов"
+        },
+        {
+          "value": 2,
+          "desc": "показать всем только 'Money' контер-террористов"
+        },
+        {
+          "value": 3,
+          "desc": "показать 'Money' товарищам по команде"
+        },
+        {
+          "value": 4,
+          "desc": "показать 'Money' всех"
+        },
+        {
+          "value": 5,
+          "desc": "показать 'Money' товарищам по команде и зрителям"
+        }
+      ],
+      "label": "Показать 'Money' в TAB",
+      "description": "",
+      "default": 3
+    },
+    {
+      "command": "mp_show_radioicon",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
+      "label": "Отображение радио иконки над головой",
+      "description": "",
+      "default": 1
+    },
+    {
+      "command": "mp_timelimit",
+      "type": "float",
+      "label": "Время (в минутах), между сменой карт",
+      "description": "Значение 0 уберет ограничение",
+      "default": 20.0,
+      "min": 0.0
+    },
+    {
+      "command": "showtriggers",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "выключить"
+        },
+        {
+          "value": 1,
+          "desc": "включить"
+        }
+      ],
+      "label": "Отладочная информация, для показа triggers.",
+      "description": "",
+      "default": 0
+    },
+    {
+      "command": "sv_alltalk",
+      "type": "int",
+      "values": [
+        {
+          "value": 0,
+          "desc": "живые не слышат мертвых и соперников"
+        },
+        {
+          "value": 1,
+          "desc": "без ограничений"
+        },
+        {
+          "value": 2,
+          "desc": "товарищи по команде слышат друг друга"
+        },
+        {
+          "value": 3,
+          "desc": "аналогично 2, но зрители слышат всех"
+        },
+        {
+          "value": 4,
+          "desc": "живые слышат всех живых, мертвые слышат живых и мертвых"
+        }
+      ],
+      "label": "Как игроки слышат друг друга.",
+      "description": "",
+      "default": 0
     }
   ]
 }
