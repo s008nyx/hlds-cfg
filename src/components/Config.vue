@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     isDisabled: function () {
-      console.log(this.disable)
       for (let error in this.disable) {
         if (this.disable[error] === true) {
           return true
@@ -59,7 +58,7 @@ export default {
       this.output = ''
 
       for (let key in params) {
-        if (typeof params[key].value !== "undefined") {
+        if (typeof params[key].value !== 'undefined') {
           this.output += (params[key].command + ' "' + params[key].value + '"\n')
         } else {
           this.output += (params[key].command + '\n')
