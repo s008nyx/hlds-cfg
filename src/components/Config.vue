@@ -4,7 +4,7 @@
     <ul id="example-1">
       <Item v-for="(item, key) in o_cfg" :key="key" :item="item"/>
     </ul>
-    <button v-on:click="getConfig" :disabled="disabled">Get Config</button>
+    <button v-on:click="getConfig" :disabled="isDisabled()">Get Config</button>
     <div>
       <transition name="fade">
       <pre v-if="output">{{ output }}</pre>
@@ -29,7 +29,7 @@ export default {
       user_cfg: {},
       output: '',
       show: false,
-      disabled: false
+      disable: {}
     }
   },
   beforeMount: function () {
@@ -45,11 +45,20 @@ export default {
       })
   },
   methods: {
+    isDisabled: function () {
+      console.log(this.disable)
+      for (let error in this.disable) {
+        if (this.disable[error] === true) {
+          return true
+        }
+      }
+      return false
+    },
     getConfig: function () {
       let params = this.user_cfg
       this.output = ''
 
-      for (var key in params) {
+      for (let key in params) {
         this.output += (params[key].command + ' "' + params[key].value + '"\n')
       }
     }

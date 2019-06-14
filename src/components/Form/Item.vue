@@ -35,7 +35,6 @@ export default {
         command: this.item.command,
         value: value
       }
-      console.log(this.$parent.user_cfg)
     }
   },
   created: function () {
