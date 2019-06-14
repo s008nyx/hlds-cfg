@@ -59,7 +59,11 @@ export default {
       this.output = ''
 
       for (let key in params) {
-        this.output += (params[key].command + ' "' + params[key].value + '"\n')
+        if (typeof params[key].value !== "undefined") {
+          this.output += (params[key].command + ' "' + params[key].value + '"\n')
+        } else {
+          this.output += (params[key].command + '\n')
+        }
       }
     }
   }
