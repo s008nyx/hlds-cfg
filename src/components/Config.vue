@@ -1,14 +1,19 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ title }}</h1>
-    <ul id="example-1">
+    <ul>
       <Item v-for="(item, key) in o_cfg" :key="key" :item="item"/>
     </ul>
-    <button v-on:click="getConfig" :disabled="isDisabled()">Get Config</button>
-    <div>
-      <transition name="fade">
-      <pre v-if="output">{{ output }}</pre>
-      </transition>
+    <div class="stick">
+      <button v-on:click="getConfig" :disabled="isDisabled()">Get Config</button>
+    </div>
+    <div ref="modal" id="modal">
+      <div class="modal__body">
+        <button v-on:click="hideModal" class="close">Close</button>
+        <transition name="fade">
+        <pre v-if="output">{{ output }}</pre>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +69,13 @@ export default {
           this.output += (params[key].command + '\n')
         }
       }
+      setTimeout(this.showModal, 500)
+    },
+    showModal: function () {
+      this.$refs.modal.style.display = 'flex'
+    },
+    hideModal: function () {
+      this.$refs.modal.style.display = 'none'
     }
   }
 }
@@ -72,6 +84,30 @@ export default {
 <style scoped>
   h1, h2 {
     font-weight: normal;
+  }
+
+  .close {
+    margin: 10px;
+  }
+
+  #modal {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  #modal .modal__body {
+    background: whitesmoke;
+    margin: 60px auto auto;
+    width: 75vw;
+    overflow-x: scroll;
   }
 
   ul {
@@ -85,6 +121,15 @@ export default {
     width: 90%;
     max-width: 1200px;
     background: #ececec;
+  }
+  .stick {
+    height: 40px;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    padding: 5px;
+    width: 100vw;
+    background: #99a3a3;
   }
 
   li:nth-child(even) {
@@ -105,11 +150,9 @@ export default {
     opacity: 0.2;
   }
   pre {
-    background: whitesmoke;
     text-align: left;
-    width: 90%;
-    margin: auto;
     padding: 20px;
+    overflow: auto;
   }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
