@@ -7,9 +7,9 @@
             <small>{{ item.description }}</small>
           </label>
         </div>
+        <Alt :item="item" v-if="item.alt_values" v-on:set-cfg-param="setCfgParam"/>
         <Select :item="item" v-if="item.values" v-on:set-cfg-param="setCfgParam"/>
         <Input :item="item" v-else v-on:set-cfg-param="setCfgParam"/>
-        <Alt :item="item" v-if="item.alt_values" v-on:set-cfg-param="setCfgParam"/>
     </div>
   </li>
 </template>
@@ -35,7 +35,6 @@ export default {
         command: this.item.command,
         value: value
       }
-      console.log(this.$parent.user_cfg)
     }
   },
   created: function () {
@@ -50,14 +49,26 @@ export default {
   }
   div.row {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     flex-wrap: wrap;
   }
   .label {
-    width: 70%;
+    /*width: 70%;*/
+    flex-basis: 50%;
   }
   .form {
-    width: 30%;
+    flex-basis: 25%;
+    /*width: 30%;*/
+  }
+  @media (max-width: 650px) {
+    .label {
+      /*width: 70%;*/
+      flex-basis: 100%;
+    }
+    .form {
+      flex-basis: 100%;
+      /*width: 30%;*/
+    }
   }
   small {
     font-size: 0.7em;
@@ -67,7 +78,7 @@ export default {
     width: 90%;
     padding: 3px;
     margin: 10px;
-    min-width: 250px;
+    min-width: 200px;
     -ms-box-sizing:content-box;
     -moz-box-sizing:content-box;
     -webkit-box-sizing:content-box;

@@ -27,7 +27,13 @@ export default {
   methods: {
     check: function () {
       let flags = this.checked.join('')
-      this.$emit('set-cfg-param', flags ? flags : this.item.default)
+      let selValue = this.item.default
+      this.$parent.$children.forEach(function (el) {
+        if (el.$options.name === 'Select') {
+          selValue = el.selected
+        }
+      })
+      this.$emit('set-cfg-param', flags || selValue)
     }
   }
 }
