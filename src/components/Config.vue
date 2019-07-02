@@ -5,7 +5,7 @@
       <Item v-for="(item, key) in o_cfg" :key="key" :item="item"/>
     </ul>
     <div class="stick">
-      <button v-on:click="getConfig" :disabled="isDisabled()">Get Config</button>
+      <button v-on:click="getConfig" ref="cfgButton">Get Config</button>
     </div>
     <div ref="modal" id="modal">
       <div class="modal__body">
@@ -57,6 +57,9 @@ export default {
         }
       }
       return false
+    },
+    checkParam: function () {
+      this.$refs.cfgButton.disabled = this.isDisabled()
     },
     getConfig: function () {
       let params = this.user_cfg

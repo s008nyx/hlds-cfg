@@ -69,6 +69,8 @@ export default {
         this.error = 'Значение больше допустимого (' + this.item.max + ')'
         this.$parent.$parent.disable[this.item.command] = true
       }
+
+      this.$parent.$parent.checkParam()
     }
   }
 }
