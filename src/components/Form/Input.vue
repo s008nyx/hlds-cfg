@@ -61,11 +61,11 @@ export default {
         }
       }
 
-      if (this.item.min && this.value < this.item.min) {
+      if (typeof this.item.min !== 'undefined' && this.value < this.item.min) {
         this.error = 'Значение меньше допустимого (' + this.item.min + ')'
         this.$parent.$parent.disable[this.item.command] = true
       }
-      if (this.item.max && this.value > this.item.max) {
+      if (typeof this.item.max !== 'undefined' && this.value > this.item.max) {
         this.error = 'Значение больше допустимого (' + this.item.max + ')'
         this.$parent.$parent.disable[this.item.command] = true
       }
